@@ -1,0 +1,23 @@
+---
+title: "7)Simulation of compoind poisson process"
+author: "Chetana Jamadar"
+date: "2023-01-01"
+output: html_document
+---
+7.1. In a bank, suppose that customer arrives at an exponential rate λ = 1 per minute for depositing
+or withdrawing amount. Suppose the distribution of amount to be deposited or withdrawn has
+distribution N(µ = 1000,σ2 = 400). Simulate the compound poisson process of the amount at
+counter from 11.00 am to 11.15 am. Consider initial amount at counter is Rs.10000/-.
+```{r}
+lambda=1;time=15;
+inter=rexp(30,rate=lambda)
+arr=cumsum(inter)
+arr=arr[arr<time]
+n=length(arr);n;
+x=rnorm(n,1000,20)
+zt=c(1000,1000+cumsum(x))
+t1=c(0,arr);
+t2=c(arr,time)
+x1=data.frame(t1,".."=rep("<=t<",n+1),t2,Nt=seq(0,n),zt)
+```
+
